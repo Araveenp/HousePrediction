@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: house-prediction
+    env: python
+    plan: free
+    autoDeploy: true
+    buildCommand: |
+      pip install --upgrade pip
+      pip install -r requirements.txt
+    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
