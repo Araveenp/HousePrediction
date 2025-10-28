@@ -2,6 +2,7 @@ services:
   - type: web
     name: house-prediction
     env: python
+    pythonVersion: 3.12.6
     plan: free
     autoDeploy: true
     buildCommand: |
