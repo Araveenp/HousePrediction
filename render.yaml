@@ -3,10 +3,16 @@ services:
     name: house-prediction
     env: python
     pythonVersion: 3.12.6
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.6
     plan: free
     autoDeploy: true
     buildCommand: |
+      python --version
+      pip --version
       python -m pip install --upgrade pip setuptools wheel
       python -m pip install --upgrade build
+      pip install --only-binary=:all: numpy==2.1.2 pandas==2.2.2 || true
       pip install -r requirements.txt
-    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
+    startCommand: python -m streamlit run app.py --server.port $PORT --server.address 0.0.0.0
